@@ -1,11 +1,15 @@
 {
-  "name": "@poohnet/pooh-swap-v2-core",
+  "name": "pooh-swap-v2-hardhat",
   "version": "1.0.1",
   "description": "🎛 Core contracts for the UniswapV2 protocol",
   "main": "index.js",
   "repository": "git@github.com:poohgithub/pooh-swap-v2-core.git",
   "author": "Hyunjae Lee <linked0@gmail.com>",
   "license": "MIT",
+  "files": [
+    "build",
+    "contracts"
+  ],
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
     "@nomicfoundation/hardhat-ethers": "^3.0.0",
@@ -23,13 +27,15 @@
     "ethers": "^6.8.0",
     "hardhat": "^2.19.1",
     "hardhat-gas-reporter": "^1.0.8",
+    "solc": "0.6.6",
     "solidity-coverage": "^0.8.0",
     "ts-node": ">=8.0.0",
     "typechain": "^8.3.0",
     "typescript": ">=4.5.0"
   },
   "dependencies": {
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "@poohnet/pooh-swap-v2-core": "1.0.1"
   },
   "scripts": {
     "clean": "hardhat clean",

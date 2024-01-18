@@ -116,21 +116,34 @@ contract UniswapV2Pair is IUniswapV2Pair, UniswapV2ERC20 {
         uint balance1 = IERC20(token1).balanceOf(address(this));
         uint amount0 = balance0.sub(_reserve0);
         uint amount1 = balance1.sub(_reserve1);
+        console.log("reserve0, reserve1", _reserve0, _reserve1);
+        console.log("balance0, balance1", balance0, balance1);
+        console.log("amount0, amount1", amount0, amount1);
 
         bool feeOn = _mintFee(_reserve0, _reserve1);
+        console.log("totalSupply", totalSupply);
         uint _totalSupply = totalSupply; // gas savings, must be defined here since totalSupply can update in _mintFee
         if (_totalSupply == 0) {
+            console.log("Math.sqrt(amount0.mul(amount1))", Math.sqrt(amount0.mul(amount1)));
+            console.log("MINIMUM_LIQUIDITY", MINIMUM_LIQUIDITY);
             liquidity = Math.sqrt(amount0.mul(amount1)).sub(MINIMUM_LIQUIDITY);
+            console.log("liquidity", liquidity);
            _mint(address(0), MINIMUM_LIQUIDITY); // permanently lock the first MINIMUM_LIQUIDITY tokens
         } else {
             liquidity = Math.min(amount0.mul(_totalSupply) / _reserve0, amount1.mul(_totalSupply) / _reserve1);
         }
         require(liquidity > 0, 'UniswapV2: INSUFFICIENT_LIQUIDITY_MINTED');
         _mint(to, liquidity);
+        console.log("balanceOf[to]", balanceOf[to]);
 
         _update(balance0, balance1, _reserve0, _reserve1);
+
+        (uint112 __reserve0, uint112 __reserve1,) = getReserves(); // gas savings
+        console.log("reserve0, reserve1", __reserve0, __reserve1);
+
         if (feeOn) kLast = uint(reserve0).mul(reserve1); // reserve0 and reserve1 are up-to-date
         emit Mint(msg.sender, amount0, amount1);
+        console.log(liquidity);
     }
 
     // this low-level function should be called from a contract which performs important safety checks
@@ -178,6 +191,7 @@ contract UniswapV2Pair is IUniswapV2Pair, UniswapV2ERC20 {
         }
         uint amount0In = balance0 > _reserve0 - amount0Out ? balance0 - (_reserve0 - amount0Out) : 0;
         uint amount1In = balance1 > _reserve1 - amount1Out ? balance1 - (_reserve1 - amount1Out) : 0;
+        console.log("amount0In, amount1In", amount0In, amount1In);
         require(amount0In > 0 || amount1In > 0, 'UniswapV2: INSUFFICIENT_INPUT_AMOUNT');
         { // scope for reserve{0,1}Adjusted, avoids stack too deep errors
         uint balance0Adjusted = balance0.mul(1000).sub(amount0In.mul(3));

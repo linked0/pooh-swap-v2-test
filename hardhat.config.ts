@@ -45,6 +45,33 @@ const config: HardhatUserConfig = {
           },
         },
       },
+      {
+        version: "0.6.6",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 18000,
+          },
+        },
+      },
+      {
+        version: "0.5.0",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 18000,
+          },
+        },
+      },
+      {
+        version: "0.4.0",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 18000,
+          },
+        },
+      },
     ],
     overrides: {
       "contracts/UniswapV2ERC20.sol": {
@@ -110,7 +137,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/examples/ExampleFlashSwap.sol": {
+      "contracts/periphery/UniswapV2Migrator.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -119,7 +147,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/UniswapV2Router02.sol": {
+      "contracts/periphery/examples/ExampleSwapToPrice.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -128,7 +157,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/examples/ExampleSwapToPrice.sol": {
+      "contracts/periphery/examples/ExampleSlidingWindowOracle.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -137,7 +167,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/UniswapV2Router01.sol": {
+      "contracts/periphery/libraries/SafeMath.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -146,7 +177,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/test/RouterEventEmitter.sol": {
+      "contracts/periphery/test/ERC20.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -155,7 +187,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/UniswapV2Migrator.sol": {
+      "contracts/periphery/test/DeflatingERC20.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -164,7 +197,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/libraries/SafeMath.sol": {
+      "contracts/periphery/UniswapV2Router02.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -173,7 +207,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/test/ERC20.sol": {
+      "contracts/periphery/test/RouterEventEmitter.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -182,7 +217,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/test/DeflatingERC20.sol": {
+      "contracts/periphery/examples/ExampleFlashSwap.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -191,7 +227,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/examples/ExampleSlidingWindowOracle.sol": {
+      "contracts/periphery/UniswapV2Router01.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -200,7 +237,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/examples/ExampleOracleSimple.sol": {
+      "contracts/periphery/examples/ExampleOracleSimple.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -209,7 +247,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/examples/ExampleComputeLiquidityValue.sol": {
+      "contracts/periphery/examples/ExampleComputeLiquidityValue.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -218,7 +257,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/test/WETH9.sol": {
+      "contracts/periphery/test/WETH9.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -227,7 +267,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/libraries/UniswapV2Library.sol": {
+      "contracts/periphery/libraries/UniswapV2LiquidityMathLibrary.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -236,7 +277,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/periphery/libraries/UniswapV2LiquidityMathLibrary.sol": {
+      "contracts/periphery/libraries/UniswapV2Library.sol":
+      {
         version: "0.6.6",
         settings: {
           optimizer: {
@@ -245,51 +287,39 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/pooh-swap-lib/libraries/FullMath.sol": {
-        version: "0.6.6",
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 1000000,
-          },
-        },
-      },
-      "contracts/pooh-swap-lib/libraries/FixedPoint.sol": {
-        version: "0.6.0",
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 1000000,
-          },
-        },
-      },
-      "contracts/periphery/libraries/UniswapV2OracleLibrary.sol": {
-        version: "0.6.0",
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 1000000,
-          },
-        },
-      },
-      "contracts/pooh-swap-lib/libraries/AddressStringUtil.sol": {
-        version: "0.6.0",
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 1000000,
-          },
-        },
-      },
-      "contracts/pooh-swap-lib/libraries/SafeERC20Namer.sol": {
-        version: "0.6.0",
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 1000000,
-          },
-        },
-      },
+      // "contracts/pooh-swap-lib/libraries/BitMath.sol":
+      // {
+      //   version: "0.5.0",
+      //   settings: {
+      //     evmVersion: 'istanbul',
+      //     optimizer: {
+      //       enabled: true,
+      //       runs: 1000000,
+      //     },
+      //   },
+      // },
+      // "contracts/pooh-swap-lib/libraries/FullMath.sol":
+      // {
+      //   version: "0.4.11",
+      //   settings: {
+      //     evmVersion: 'istanbul',
+      //     optimizer: {
+      //       enabled: true,
+      //       runs: 1000000,
+      //     },
+      //   },
+      // },
+      // "contracts/pooh-swap-lib/libraries/AddressStringUtil.sol":
+      // {
+      //   version: "0.5.0",
+      //   settings: {
+      //     evmVersion: 'istanbul',
+      //     optimizer: {
+      //       enabled: true,
+      //       runs: 1000000,
+      //     },
+      //   },
+      // },
     },
   },
   networks: {

@@ -56,7 +56,7 @@ describe('UniswapV2Pair', () => {
   })
 
 
-  it.only('mint', async () => {
+  it('mint', async () => {
     console.log("minting");
   });
 })
