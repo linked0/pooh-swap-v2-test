@@ -745,11 +745,6 @@
   resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-4.9.3.tgz#00d7a8cf35a475b160b3f0293a6403c511099364"
   integrity sha512-He3LieZ1pP2TNt5JbkPA4PNT9WC3gOTOlDcFGJW4Le4QKqwmiNJCRt44APfxMxvq7OugU/cqYuPcSBzOw38DAg==
 
-"@poohnet/pooh-swap-v2-core@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@poohnet/pooh-swap-v2-core/-/pooh-swap-v2-core-1.0.1.tgz#74acbf862837f4b52cbc0be62daf40e84321e1d0"
-  integrity sha512-hEAV8bVj3ufMsvkVhSzmBibbu5TOAfrbX4ChhQi8WEpsudNMlZncsmhfbRV6lNTAuyQXVkQXMRoKBqmR+c7BQA==
-
 "@scure/base@~1.1.0":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@scure/base/-/base-1.1.3.tgz#8584115565228290a6c6c4961973e0903bb3df2f"

@@ -1,6 +1,6 @@
 pragma solidity 0.6.6;
 
-import '@poohnet/pooh-swap-v2-core/contracts/interfaces/IUniswapV2Pair.sol';
+import '../../pooh-swap-v2-core/interfaces/IUniswapV2Pair.sol';
 
 import "./SafeMath.sol";
 

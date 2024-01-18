@@ -1,6 +1,6 @@
 pragma solidity =0.6.6;
 
-import '@poohnet/pooh-swap-v2-core/contracts/interfaces/IUniswapV2Factory.sol';
+import '../pooh-swap-v2-core/interfaces/IUniswapV2Factory.sol';
 import '../pooh-swap-lib/libraries/TransferHelper.sol';
 
 import './interfaces/IUniswapV2Router02.sol';
