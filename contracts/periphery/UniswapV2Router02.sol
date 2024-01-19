@@ -215,10 +215,14 @@ contract UniswapV2Router02 is IUniswapV2Router02 {
             (address token0,) = UniswapV2Library.sortTokens(input, output);
             uint amountOut = amounts[i + 1];
             (uint amount0Out, uint amount1Out) = input == token0 ? (uint(0), amountOut) : (amountOut, uint(0));
-            address to = i < path.length - 2 ? UniswapV2Library.pairFor(factory, output, path[i + 2]) : _to;
-            IUniswapV2Pair(UniswapV2Library.pairFor(factory, input, output)).swap(
+            address to = i < path.length - 2 ? IUniswapV2Factory(factory).getPair(output, path[i + 2]) : _to;
+            IUniswapV2Pair(IUniswapV2Factory(factory).getPair(input, output)).swap(
                 amount0Out, amount1Out, to, new bytes(0)
             );
+            // address to = i < path.length - 2 ? UniswapV2Library.pairFor(factory, output, path[i + 2]) : _to;
+            // IUniswapV2Pair(UniswapV2Library.pairFor(factory, input, output)).swap(
+            //     amount0Out, amount1Out, to, new bytes(0)
+            // );
         }
     }
     function swapExactTokensForTokens(
@@ -231,7 +235,7 @@ contract UniswapV2Router02 is IUniswapV2Router02 {
         amounts = UniswapV2Library.getAmountsOut(factory, amountIn, path);
         require(amounts[amounts.length - 1] >= amountOutMin, 'UniswapV2Router: INSUFFICIENT_OUTPUT_AMOUNT');
         TransferHelper.safeTransferFrom(
-            path[0], msg.sender, UniswapV2Library.pairFor(factory, path[0], path[1]), amounts[0]
+            path[0], msg.sender, IUniswapV2Factory(factory).getPair(path[0], path[1]), amounts[0]
         );
         _swap(amounts, path, to);
     }

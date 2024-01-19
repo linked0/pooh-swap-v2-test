@@ -1,6 +1,7 @@
 pragma solidity 0.6.6;
 
 import '../../pooh-swap-v2-core/interfaces/IUniswapV2Pair.sol';
+import '../../pooh-swap-v2-core/interfaces/IUniswapV2Factory.sol';
 
 import "./SafeMath.sol";
 
@@ -28,7 +29,8 @@ library UniswapV2Library {
     // fetches and sorts the reserves for a pair
     function getReserves(address factory, address tokenA, address tokenB) internal view returns (uint reserveA, uint reserveB) {
         (address token0,) = sortTokens(tokenA, tokenB);
-        (uint reserve0, uint reserve1,) = IUniswapV2Pair(pairFor(factory, tokenA, tokenB)).getReserves();
+        address pair = IUniswapV2Factory(factory).getPair(tokenA, tokenB);
+        (uint reserve0, uint reserve1,) = IUniswapV2Pair(pair).getReserves();
         (reserveA, reserveB) = tokenA == token0 ? (reserve0, reserve1) : (reserve1, reserve0);
     }
 

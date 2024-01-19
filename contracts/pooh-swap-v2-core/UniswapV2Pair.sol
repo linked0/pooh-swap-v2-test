@@ -116,9 +116,9 @@ contract UniswapV2Pair is IUniswapV2Pair, UniswapV2ERC20 {
         uint balance1 = IERC20(token1).balanceOf(address(this));
         uint amount0 = balance0.sub(_reserve0);
         uint amount1 = balance1.sub(_reserve1);
-        console.log("reserve0, reserve1", _reserve0, _reserve1);
-        console.log("balance0, balance1", balance0, balance1);
-        console.log("amount0, amount1", amount0, amount1);
+        console.log("### reserve0, reserve1", _reserve0, _reserve1);
+        console.log("### balance0, balance1", balance0, balance1);
+        console.log("### amount0, amount1", amount0, amount1);
 
         bool feeOn = _mintFee(_reserve0, _reserve1);
         console.log("totalSupply", totalSupply);
@@ -189,9 +189,13 @@ contract UniswapV2Pair is IUniswapV2Pair, UniswapV2ERC20 {
         balance0 = IERC20(_token0).balanceOf(address(this));
         balance1 = IERC20(_token1).balanceOf(address(this));
         }
+        console.log("balance0, balance1", balance0, balance1);
+        console.log("reserve0, reserve1", _reserve0, _reserve1);
+        console.log("amount0Out, amount1Out", amount0Out, amount1Out);
         uint amount0In = balance0 > _reserve0 - amount0Out ? balance0 - (_reserve0 - amount0Out) : 0;
         uint amount1In = balance1 > _reserve1 - amount1Out ? balance1 - (_reserve1 - amount1Out) : 0;
         console.log("amount0In, amount1In", amount0In, amount1In);
+        console.log("this address", address(this));
         require(amount0In > 0 || amount1In > 0, 'UniswapV2: INSUFFICIENT_INPUT_AMOUNT');
         { // scope for reserve{0,1}Adjusted, avoids stack too deep errors
         uint balance0Adjusted = balance0.mul(1000).sub(amount0In.mul(3));
@@ -214,6 +218,6 @@ contract UniswapV2Pair is IUniswapV2Pair, UniswapV2ERC20 {
     // force reserves to match balances
     function sync() external lock {
         _update(IERC20(token0).balanceOf(address(this)), IERC20(token1).balanceOf(address(this)), reserve0, reserve1);
-        console.log("sync called");
+        console.log("### sync called");
     }
 }

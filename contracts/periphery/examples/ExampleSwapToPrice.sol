@@ -9,6 +9,7 @@ import '../interfaces/IERC20.sol';
 import '../interfaces/IUniswapV2Router01.sol';
 import '../libraries/SafeMath.sol';
 import '../libraries/UniswapV2Library.sol';
+import 'hardhat/console.sol';
 
 contract ExampleSwapToPrice {
     using SafeMath for uint256;
@@ -47,6 +48,7 @@ contract ExampleSwapToPrice {
                 truePriceTokenA, truePriceTokenB,
                 reserveA, reserveB
             );
+            console.log("### reserveA: %s, reserveB: %s", reserveA, reserveB);
         }
 
         require(amountIn > 0, 'ExampleSwapToPrice: ZERO_AMOUNT_IN');
