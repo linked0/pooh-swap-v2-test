@@ -7,6 +7,7 @@ import '../../pooh-swap-lib/libraries/FullMath.sol';
 
 import './SafeMath.sol';
 import './UniswapV2Library.sol';
+import "hardhat/console.sol";
 
 // library containing some math for dealing with the liquidity shares of a pair, e.g. computing their exact value
 // in terms of the underlying tokens
@@ -33,6 +34,7 @@ library UniswapV2LiquidityMathLibrary {
         );
         uint256 rightSide = (aToB ? reserveA.mul(1000) : reserveB.mul(1000)) / 997;
 
+        console.log("### leftSide: %s, rightSide: %s", leftSide, rightSide);
         if (leftSide < rightSide) return (false, 0);
 
         // compute the amount that must be sent to move the price to the profit-maximizing price

@@ -151,9 +151,6 @@ describe('ExampleSwapToPrice', () => {
       ).to.be.revertedWith('ExampleSwapToPrice: ZERO_SPEND')
     })
 
-    // Code snipet
-    // IUniswapV2Factory(factory).getPair(
-
     it('moves the price to 1:90', async () => {
       console.log("token0, token1:", token0.target, token1.target);
       await expect(
@@ -176,73 +173,71 @@ describe('ExampleSwapToPrice', () => {
         .to.emit(token0, 'Transfer')
         .withArgs(swapToPriceExample.target, pair.target, '526682316179835569')
         .to.emit(token1, 'Transfer')
-        .withArgs(pair.target, accounts[0], '49890467170695440744')
+        .withArgs(pair.target, accounts[0],
+        '49890467170695440744')
     })
 
-  //   it('moves the price to 1:110', async () => {
-  //     await expect(
-  //       swapToPriceExample.swapToPrice(
-  //         token0.address,
-  //         token1.address,
-  //         1,
-  //         110,
-  //         MaxUint256,
-  //         MaxUint256,
-  //         wallet.address,
-  //         MaxUint256,
-  //         overrides
-  //       )
-  //     )
-  //       // (1e21 + 47376582963642643588) : (1e19 - 451039908682851138) ~= 1:110
-  //       .to.emit(token1, 'Transfer')
-  //       .withArgs(wallet.address, swapToPriceExample.address, '47376582963642643588')
-  //       .to.emit(token1, 'Approval')
-  //       .withArgs(swapToPriceExample.address, router.address, '47376582963642643588')
-  //       .to.emit(token1, 'Transfer')
-  //       .withArgs(swapToPriceExample.address, pair.address, '47376582963642643588')
-  //       .to.emit(token0, 'Transfer')
-  //       .withArgs(pair.address, wallet.address, '451039908682851138')
-  //   })
+    it('moves the price to 1:110', async () => {
+      await expect(
+        swapToPriceExample.swapToPrice(
+          token0.target,
+          token1.target,
+          1,
+          110,
+          MaxUint256,
+          MaxUint256,
+          accounts[0],
+          MaxUint256,
+        )
+      )
+        // (1e21 + 47376582963642643588) : (1e19 - 451039908682851138) ~= 1:110
+        .to.emit(token1, 'Transfer')
+        .withArgs(accounts[0], swapToPriceExample.target, '47376582963642643588')
+        .to.emit(token1, 'Approval')
+        .withArgs(swapToPriceExample.target, router.target, '47376582963642643588')
+        .to.emit(token1, 'Transfer')
+        .withArgs(swapToPriceExample.target, pair.target, '47376582963642643588')
+        .to.emit(token0, 'Transfer')
+        .withArgs(pair.target, accounts[0], '451039908682851138')
+    })
 
-  //   it('reverse token order', async () => {
-  //     await expect(
-  //       swapToPriceExample.swapToPrice(
-  //         token1.address,
-  //         token0.address,
-  //         110,
-  //         1,
-  //         MaxUint256,
-  //         MaxUint256,
-  //         wallet.address,
-  //         MaxUint256,
-  //         overrides
-  //       )
-  //     )
-  //       // (1e21 + 47376582963642643588) : (1e19 - 451039908682851138) ~= 1:110
-  //       .to.emit(token1, 'Transfer')
-  //       .withArgs(wallet.address, swapToPriceExample.address, '47376582963642643588')
-  //       .to.emit(token1, 'Approval')
-  //       .withArgs(swapToPriceExample.address, router.address, '47376582963642643588')
-  //       .to.emit(token1, 'Transfer')
-  //       .withArgs(swapToPriceExample.address, pair.address, '47376582963642643588')
-  //       .to.emit(token0, 'Transfer')
-  //       .withArgs(pair.address, wallet.address, '451039908682851138')
-  //   })
+    it.skip('reverse token order', async () => {
+      await expect(
+        swapToPriceExample.swapToPrice(
+          token1.target,
+          token0.target,
+          110,
+          1,
+          MaxUint256,
+          MaxUint256,
+          accounts[0],
+          MaxUint256,
+        )
+      )
+        // (1e21 + 47376582963642643588) : (1e19 - 451039908682851138) ~= 1:110
+        .to.emit(token1, 'Transfer')
+        .withArgs(accounts[0], swapToPriceExample.target, '47376582963642643588')
+        .to.emit(token1, 'Approval')
+        .withArgs(swapToPriceExample.target, router.target, '47376582963642643588')
+        .to.emit(token1, 'Transfer')
+        .withArgs(swapToPriceExample.target, pair.target, '47376582963642643588')
+        .to.emit(token0, 'Transfer')
+        .withArgs(pair.target, accounts[0], '451039908682851138')
+    })
 
-  //   it('swap gas cost', async () => {
-  //     const tx = await swapToPriceExample.swapToPrice(
-  //       token0.address,
-  //       token1.address,
-  //       1,
-  //       110,
-  //       MaxUint256,
-  //       MaxUint256,
-  //       wallet.address,
-  //       MaxUint256,
-  //       overrides
-  //     )
-  //     const receipt = await tx.wait()
-  //     expect(receipt.gasUsed).to.eq('115129')
-  //   }).retries(2) // gas test is inconsistent
+    it.skip('swap gas cost', async () => {
+      const tx = await swapToPriceExample.swapToPrice(
+        token0.target,
+        token1.target,
+        1,
+        110,
+        MaxUint256,
+        MaxUint256,
+        accounts[0],
+        MaxUint256,
+      )
+      const receipt = await tx.wait()
+      expect(receipt?.gasUsed).to.eq('115129')
+    }).retries(2) // gas test is inconsistent
   })
 })

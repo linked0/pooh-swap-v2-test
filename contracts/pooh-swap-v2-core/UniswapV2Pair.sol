@@ -82,6 +82,9 @@ contract UniswapV2Pair is IUniswapV2Pair, UniswapV2ERC20 {
         }
         reserve0 = uint112(balance0);
         reserve1 = uint112(balance1);
+
+        console.log("### reserve0, reserve1", reserve0, reserve1);
+        console.log("### reserve1/reserve0 ", reserve1/reserve0);
         blockTimestampLast = blockTimestamp;
         emit Sync(reserve0, reserve1);
     }
@@ -182,6 +185,10 @@ contract UniswapV2Pair is IUniswapV2Pair, UniswapV2ERC20 {
         { // scope for _token{0,1}, avoids stack too deep errors
         address _token0 = token0;
         address _token1 = token1;
+        balance0 = IERC20(_token0).balanceOf(address(this));
+        balance1 = IERC20(_token1).balanceOf(address(this));
+        console.log("balance0, balance1", balance0, balance1);
+        
         require(to != _token0 && to != _token1, 'UniswapV2: INVALID_TO');
         if (amount0Out > 0) _safeTransfer(_token0, to, amount0Out); // optimistically transfer tokens
         if (amount1Out > 0) _safeTransfer(_token1, to, amount1Out); // optimistically transfer tokens

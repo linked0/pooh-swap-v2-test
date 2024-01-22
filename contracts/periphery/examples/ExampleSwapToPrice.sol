@@ -48,7 +48,8 @@ contract ExampleSwapToPrice {
                 truePriceTokenA, truePriceTokenB,
                 reserveA, reserveB
             );
-            console.log("### reserveA: %s, reserveB: %s", reserveA, reserveB);
+            console.log("### reserveA: %s, reserveB: %s, amountIn",
+                reserveA, reserveB, amountIn);
         }
 
         require(amountIn > 0, 'ExampleSwapToPrice: ZERO_AMOUNT_IN');
