@@ -5,6 +5,13 @@ This project demonstrates a basic Hardhat use case. It comes with a sample contr
 Try running some of the following tasks:
 
 ```shell
+yarn
+cp .env.sample .env
+yarn test
+```
+
+### Backup
+```shell
 npx hardhat help
 npx hardhat test
 REPORT_GAS=true npx hardhat test
