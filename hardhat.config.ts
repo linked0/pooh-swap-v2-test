@@ -72,6 +72,12 @@ const config: HardhatUserConfig = {
           },
         },
       },
+      {
+        version: "0.8.20",
+      },
+      {
+        version: "0.5.16",
+      },
     ],
     overrides: {
       "contracts/UniswapV2ERC20.sol": {
